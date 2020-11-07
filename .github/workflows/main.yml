@@ -28,7 +28,7 @@ jobs:
           echo ${{ github.event.pull_request.title }}
           
       - name: Check RP in Autogenlist
-        run: npm find-basepath-exists ${{ github.head_ref }}
+        run: npm run find-basepath-exists ${{ github.head_ref }}
 
       - name: automerge
         uses: "pascalgn/automerge-action@v0.12.0"
