@@ -4,7 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "find-basepath-exists": "ts-node name_exists_in_autogen"
+  },
+  "devDependencies": {
+    "autorest": "^3.0.6187",
+    "@autorest/azureresourceschema": "^3.0.92",
+    "@autorest/core": "^3.0.6320",
+    "@types/async": "^3.2.0",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.11.0",
+    "async": "^3.2.0",
+    "chalk": "^4.0.0",
+    "lodash": "^4.17.19",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "nodegit": "^0.26.5"
   },
   "repository": {
     "type": "git",
