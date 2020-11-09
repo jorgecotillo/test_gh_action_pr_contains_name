@@ -38,10 +38,9 @@ jobs:
       - name: Check RP in Autogenlist
         id: CheckRPInAutogenlist
         if: ${{ github.actor == 'jorgecotillo' }}        
-        run: result=$(npm run find-basepath-exists ${{ github.head_ref }}); echo "AUTOGENLIST_CHECK_RESULT=$?" >> $GITHUB_ENV;
-
+        run: check_result=''; exec=$(npm run find-basepath-exists ${{ github.head_ref }}); while read line; do check_result=$line; echo $check_result; done <<< "$exec"; echo "AUTOGENLIST_CHECK_RESULT=$check_result" >> $GITHUB_ENV;
       - name: automerge
-        if: ${{ github.actor == 'jorgecotillo' && steps.CheckRPInAutogenlist.outputs.AUTOGENLIST_CHECK_RESULT == 0 }}        
+        if: ${{ github.actor == 'jorgecotillo' && steps.CheckRPInAutogenlist.outputs.AUTOGENLIST_CHECK_RESULT == "true" }}        
         uses: "pascalgn/automerge-action@v0.12.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"          
