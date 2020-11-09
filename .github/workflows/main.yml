@@ -37,11 +37,11 @@ jobs:
           
       - name: Check RP in Autogenlist
         id: CheckRPInAutogenlist
-        if: ${{ github.actor == 'AzureSDKAutomation' && startsWith(github.head_ref, 'AzureSDKAutomation') }}        
+        if: ${{ github.actor == 'jcotillo' && startsWith(github.head_ref, 'jcotillo') }}        
         run: result=$(npm run find-basepath-exists ${{ github.head_ref }}); echo "AUTOGENLIST_CHECK_RESULT=$?" >> $GITHUB_ENV;
 
       - name: automerge
-        if: ${{ github.actor == 'AzureSDKAutomation' && startsWith(github.head_ref, 'AzureSDKAutomation') && steps.CheckRPInAutogenlist.outputs.AUTOGENLIST_CHECK_RESULT == 0 }}        
+        if: ${{ github.actor == 'jcotillo' && startsWith(github.head_ref, 'jcotillo') && steps.CheckRPInAutogenlist.outputs.AUTOGENLIST_CHECK_RESULT == 0 }}        
         uses: "pascalgn/automerge-action@v0.12.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"          
