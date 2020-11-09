@@ -7,7 +7,6 @@ executeSynchronous(async () => {
     
     let prName = process.argv[2];
 
-    // some comment
     if (!prName.startsWith("jcotillo")) {
         console.log("false");
         return;
