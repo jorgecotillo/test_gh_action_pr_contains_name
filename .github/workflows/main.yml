@@ -39,7 +39,7 @@ jobs:
         id: CheckRPInAutogenlist
         env:
           PR_PREFIX: jcotillo/
-        if: github.actor == 'jorgecotillo' && startsWith(github.head_ref, $PR_PREFIX)
+        if: ${{ github.actor == 'jorgecotillo' && startsWith(github.head_ref, $PR_PREFIX) }}
         run: |
           check_result='';
           exec=$(npm run find-basepath-exists ${{ github.head_ref }} $PR_PREFIX); 
