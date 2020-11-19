@@ -37,10 +37,12 @@ jobs:
           
       - name: Check RP in Autogenlist
         id: CheckRPInAutogenlist
-        if: ${{ github.actor == 'jorgecotillo' }}        
+        env:
+          PR_PREFIX: jcotillo/
+        if: ${{ github.actor == 'jorgecotillo' }} && startsWith(github.head_ref, $PR_PREFIX)
         run: |
           check_result='';
-          exec=$(npm run find-basepath-exists ${{ github.head_ref }}); 
+          exec=$(npm run find-basepath-exists ${{ github.head_ref }} $PR_PREFIX); 
           while read line; 
           do
             # overriding check_result until the last line is read, last line contains
