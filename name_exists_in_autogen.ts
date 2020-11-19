@@ -5,14 +5,15 @@ executeSynchronous(async () => {
         return;
     }
     
-    let prName = process.argv[2];
-
-    if (!prName.startsWith("jcotillo")) {
+    const prName = process.argv[2];
+    const prPrefix = process.argv[3];
+    console.log(`prefix is: ${prPrefix}`);
+    if (!prName.startsWith(prPrefix)) {
         console.log("false");
         return;
     }
 
-    let basePath = prName.replace("jcotillo/", "");
+    let basePath = prName.replace(prPrefix, "");
     console.log(`${basePath}/resource-manager`);
     console.log("true");
 });
