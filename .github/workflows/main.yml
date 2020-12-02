@@ -52,9 +52,20 @@ jobs:
           done <<< "$exec";
           
           echo "AUTOGENLIST_CHECK_RESULT=$check_result" >> $GITHUB_ENV;
+      
+      - name : Apply Label
+        if: ${{ github.actor == 'jorgecotillo' && env.AUTOGENLIST_CHECK_RESULT == 'true' }}
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.addLabels({
+              labels: [ 'automerge', 'bot' ]
+            })
+            
       - name: automerge
         if: ${{ github.actor == 'jorgecotillo' && env.AUTOGENLIST_CHECK_RESULT == 'true' }}        
         uses: "pascalgn/automerge-action@v0.12.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"          
-          MERGE_LABELS: ""
+          MERGE_LABELS: "automerge, bot"
