@@ -14,7 +14,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -36,10 +35,12 @@ jobs:
         run: npm install
           
       - name: Check RP in Autogenlist
-        if: ${{ github.actor == 'jorgecotillo' }}
+        env:
+          PR_PREFIX: jcotillo/
+        if: github.actor == 'jorgecotillo' && startsWith(github.head_ref, $PR_PREFIX)
         run: |
           check_result='';
-          exec=$(npm run find-basepath-exists ${{ github.head_ref }} ${{ github.actor }}); 
+          exec=$(npm run find-basepath-exists ${{ github.head_ref }} $PR_PREFIX); 
           while read line; 
           do
             # overriding check_result until the last line is read, last line contains
