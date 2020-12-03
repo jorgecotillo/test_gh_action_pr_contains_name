@@ -58,7 +58,10 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.issues.addLabels({
-              labels: [ 'automerge', 'bot' ]
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [ 'bot' ]
             })
             
       - name: automerge
