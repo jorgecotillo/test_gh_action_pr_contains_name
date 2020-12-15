@@ -49,11 +49,6 @@ jobs:
           done <<< "$exec";
           
           echo "AUTOGENLIST_CHECK_RESULT=$check_result" >> $GITHUB_ENV;
-      
-      - uses: hmarr/auto-approve-action@v2.0.0
-        if: ${{ env.AUTOGENLIST_CHECK_RESULT == 'true' }}
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
             
       - name: automerge
         if: ${{ env.AUTOGENLIST_CHECK_RESULT == 'true' }}        
