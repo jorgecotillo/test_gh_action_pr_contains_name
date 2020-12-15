@@ -37,7 +37,6 @@ jobs:
       - name: Check RP in Autogenlist
         env:
           PR_PREFIX: jcotillo/
-        if: github.actor == 'jorgecotillo'
         run: |
           check_result='';
           exec=$(npm run find-basepath-exists ${{ github.head_ref }} $PR_PREFIX); 
@@ -57,7 +56,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
             
       - name: automerge
-        if: ${{ github.actor == 'jorgecotillo' && env.AUTOGENLIST_CHECK_RESULT == 'true' }}        
+        if: ${{ env.AUTOGENLIST_CHECK_RESULT == 'true' }}        
         uses: "pascalgn/automerge-action@v0.12.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"          
