@@ -48,6 +48,10 @@ jobs:
             echo $check_result;
           done <<< "$exec";
           
+          if [ $check_result == 'false' ] ; then
+            exit 1
+          fi
+          
           echo "AUTOGENLIST_CHECK_RESULT=$check_result" >> $GITHUB_ENV;
             
       - name: automerge
