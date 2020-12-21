@@ -48,7 +48,7 @@ jobs:
             echo $check_result;
           done <<< "$exec";
           
-          if [ $check_result == 'false' ] ; then
+          if [ $check_result == 'true' ] ; then
             exit 1
           fi
           
